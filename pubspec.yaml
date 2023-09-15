@@ -1,0 +1,73 @@
+name: newfocus_v2
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.0-262.2.beta <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+  curved_navigation_bar: ^1.0.3
+  flutter_native_splash: ^2.3.2
+  liquid_swipe: ^3.1.0
+  smooth_page_indicator: ^1.1.0
+  flutter_otp_text_field: ^1.1.1
+  firebase_core: ^2.15.1
+  firebase_auth: ^4.9.0
+  google_sign_in: ^6.1.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter_native_splash:
+  color: "#E5E9FF"
+  color_dark: "#1C1C1F"
+  image: assets\img\LogoScreen.png
+  image_dark: assets\img\LogoScreen.png
+
+  android_12:
+    image: assets\img\LogoScreen.png
+    icon_background_color: "#E5E9FF"
+    image_dark: assets\img\LogoScreen.png
+    icon_background_color_dark: "#1C1C1F"
+
+flutter:
+  uses-material-design: true
+
+
+  assets:
+  - assets\img\LogoPNG.png
+  - assets\img\LogoScreen.png
+  - assets\img\login_balls.png
+  - assets\img\Swipe1.png
+  - assets\img\Swipe2.png
+  - assets\img\Swipe3.png
+  - assets\img\GoogleLogo.png
+  - assets\img\ForgetPassword.png
+
+
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets\font\Poppins-Black.ttf
+        - asset: assets\font\Poppins-Bold.ttf
+        - asset: assets\font\Poppins-ExtraBold.ttf
+        - asset: assets\font\Poppins-Light.ttf
+        - asset: assets\font\Poppins-Medium.ttf
+        - asset: assets\font\Poppins-Regular.ttf
+        - asset: assets\font\Poppins-SemiBold.ttf
+  
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
