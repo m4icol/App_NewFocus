@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newfocus_v2/src/constants/image_strings.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -22,7 +24,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () async {
+            await GoogleSignIn().signOut();
+            FirebaseAuth.instance.signOut();
+          },
           icon: const Icon(Icons.person),
           color: Theme.of(context).iconTheme.color,
           padding: const EdgeInsets.symmetric(vertical: 17, horizontal: 25),

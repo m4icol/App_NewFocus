@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
 import 'package:newfocus_v2/src/constants/image_strings.dart';
 import 'package:newfocus_v2/src/features/authentication/screens/login/login_screen.dart';
@@ -26,7 +28,9 @@ class SignUpFooter extends StatelessWidget {
           width: double.infinity,
           height: 50,
           child: OutlinedButton.icon(
-            onPressed: () async {},
+            onPressed: () {
+              signInWithGoogle();
+            },
             icon: const Image(
               image: AssetImage(tLogoGoogle),
               width: 22,
@@ -63,5 +67,19 @@ class SignUpFooter extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  signInWithGoogle() async {
+    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
+    print(userCredential.user?.displayName);
   }
 }
