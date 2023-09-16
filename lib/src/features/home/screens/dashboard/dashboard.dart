@@ -3,7 +3,9 @@ import 'package:newfocus_v2/src/features/home/screens/dashboard/widgets/category
 import 'package:newfocus_v2/src/widgets/custom_app_bar.dart';
 
 class DashBoard extends StatelessWidget {
-  const DashBoard({super.key});
+  final String? displayName; // Agregar una propiedad para el nombre de usuario
+
+  const DashBoard({Key? key, this.displayName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +19,10 @@ class DashBoard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hey <User>',
+                  'Hey ${displayName ?? "Usuario"}',
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
+
                 Text(
                   'Como va tu día?',
                   style: Theme.of(context).textTheme.titleSmall,

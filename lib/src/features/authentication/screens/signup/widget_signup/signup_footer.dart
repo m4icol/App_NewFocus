@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
 import 'package:newfocus_v2/src/constants/image_strings.dart';
 import 'package:newfocus_v2/src/features/authentication/screens/login/login_screen.dart';
+import 'package:newfocus_v2/src/features/home/screens/navigation_bar/navigation_bar.dart';
 
 class SignUpFooter extends StatelessWidget {
   SignUpFooter({
@@ -29,7 +30,15 @@ class SignUpFooter extends StatelessWidget {
           height: 50,
           child: OutlinedButton.icon(
             onPressed: () {
-              signInWithGoogle();
+              signInWithGoogle().then((success) {
+                if (success) {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => NavigationBarWidget(),
+                    ),
+                  );
+                }
+              });
             },
             icon: const Image(
               image: AssetImage(tLogoGoogle),
@@ -69,17 +78,22 @@ class SignUpFooter extends StatelessWidget {
     );
   }
 
-  signInWithGoogle() async {
-    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  Future<bool> signInWithGoogle() async {
+    try {
+      GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+      GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-    AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+      AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
 
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
+      await FirebaseAuth.instance.signInWithCredential(credential);
 
-    print(userCredential.user?.displayName);
+      print("Inicio de sesión con Google exitoso");
+      return true;
+    } catch (e) {
+      print("Error al iniciar sesión con Google: $e");
+      return false;
+    }
   }
 }
