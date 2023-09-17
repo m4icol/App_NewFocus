@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
 import 'package:newfocus_v2/src/features/authentication/screens/forget_password/forget_password_otp/otp_screen.dart';
 import 'package:newfocus_v2/src/features/authentication/screens/login/login_screen.dart';
@@ -242,5 +244,60 @@ class OTPButtom extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class SignOutButton extends StatelessWidget {
+  const SignOutButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Pallete.gradient1,
+            Pallete.gradient3,
+          ],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        ),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: ElevatedButton(
+        onPressed: () async {
+          // Implementa la funcionalidad para cerrar sesión en Firebase.
+          await FirebaseAuth.instance.signOut();
+
+          // Llama a la función para desconectar la cuenta de Google.
+          await signOutGoogle();
+
+          // Después de cerrar sesión, navega a la pantalla de WelcomeScreen().
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => WelcomeScreen(),
+            ),
+            (Route<dynamic> route) =>
+                false, // Esto elimina las rutas anteriores de la pila de navegación.
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          fixedSize: const Size(280, 50),
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+        ),
+        child: const Text(
+          'Cerrar sesión',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> signOutGoogle() async {
+    await GoogleSignIn().signOut();
   }
 }

@@ -7,7 +7,7 @@ class TTextTheme {
     titleMedium: TextStyle(
         color: Color.fromARGB(255, 28, 28, 28),
         fontWeight: FontWeight.w700,
-        fontSize: 32,
+        fontSize: 29,
         height: 1.2),
 
     // Titulo de cada task/note
@@ -43,7 +43,7 @@ class TTextTheme {
     titleMedium: TextStyle(
         color: Color.fromARGB(255, 255, 255, 255),
         fontWeight: FontWeight.w700,
-        fontSize: 32,
+        fontSize: 29,
         height: 1.2),
 
     // Titulo de cada task/note

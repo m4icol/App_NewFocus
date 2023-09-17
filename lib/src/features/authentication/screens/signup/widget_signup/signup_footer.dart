@@ -29,7 +29,7 @@ class SignUpFooter extends StatelessWidget {
           width: double.infinity,
           height: 50,
           child: OutlinedButton.icon(
-            onPressed: () {
+            onPressed: () async {
               signInWithGoogle().then((success) {
                 if (success) {
                   Navigator.of(context).pushReplacement(
@@ -90,10 +90,10 @@ class SignUpFooter extends StatelessWidget {
       await FirebaseAuth.instance.signInWithCredential(credential);
 
       print("Inicio de sesión con Google exitoso");
-      return true;
+      return true; // Devuelve true para indicar éxito
     } catch (e) {
       print("Error al iniciar sesión con Google: $e");
-      return false;
+      return false; // Devuelve false en caso de error
     }
   }
 }

@@ -58,6 +58,10 @@ flutter:
   - assets\img\Swipe3.png
   - assets\img\GoogleLogo.png
   - assets\img\ForgetPassword.png
+  - assets\img\emojis\Excelente.png
+  - assets\img\emojis\Bien.png
+  - assets\img\emojis\Meh.png
+  - assets\img\emojis\Mal.png
 
 
 
