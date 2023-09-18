@@ -1,17 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
+import 'package:newfocus_v2/src/features/task-notes/tasks/provider/date_time_provider.dart';
+import 'package:newfocus_v2/src/features/task-notes/tasks/provider/radio_provider.dart';
 import 'package:newfocus_v2/src/features/task-notes/tasks/widgets/date_time_widget.dart';
 import 'package:newfocus_v2/src/features/task-notes/tasks/widgets/radio_widget.dart';
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
+import 'package:provider/provider.dart';
 
-class CreateTaskShowModal extends StatelessWidget {
+class CreateTaskShowModal extends ConsumerWidget {
   const CreateTaskShowModal({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final dateProv = ref.watch(dateProvider);
     return Container(
       height: MediaQuery.of(context).size.height * 0.76,
       padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 40),
@@ -79,42 +85,81 @@ class CreateTaskShowModal extends StatelessWidget {
             'Categoría',
             style: Theme.of(context).textTheme.headlineSmall,
           ),
-          const Row(
+          Row(
             children: [
               Expanded(
                 child: RadioWidget(
                   categoryColor: Pallete.categoryColor1,
                   titleRadio: 'Casual',
+                  valueInput: 1,
+                  onChangeValue: () => ref.read(radioProvider.notifier).update(
+                        (state) => 1,
+                      ),
                 ),
               ),
               Expanded(
                 child: RadioWidget(
                   categoryColor: Pallete.categoryColor2,
                   titleRadio: 'Salud',
+                  valueInput: 2,
+                  onChangeValue: () => ref.read(radioProvider.notifier).update(
+                        (state) => 2,
+                      ),
                 ),
               ),
               Expanded(
                 child: RadioWidget(
                   categoryColor: Pallete.categoryColor3,
                   titleRadio: 'Estudio',
+                  valueInput: 3,
+                  onChangeValue: () => ref.read(radioProvider.notifier).update(
+                        (state) => 3,
+                      ),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 5),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               DateTimeWidget(
                 titleText: 'Fecha',
-                valueText: 'dd/mm/yy',
+                valueText: dateProv,
                 icon: CupertinoIcons.calendar,
+                onTap: () async {
+                  final getValue = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2021),
+                    lastDate: DateTime(2025),
+                  );
+
+                  if (getValue != null) {
+                    final format = DateFormat.yMd();
+                    ref.read(dateProvider.notifier).update(
+                          (state) => format.format(getValue),
+                        );
+                  }
+                },
               ),
               SizedBox(width: 20),
               DateTimeWidget(
                 titleText: 'Hora',
-                valueText: 'hh : mm',
+                valueText: ref.watch(timeProvider),
                 icon: CupertinoIcons.clock,
+                onTap: () async {
+                  final getTime = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.now(),
+                  );
+
+                  if (getTime != null) {
+                    ref.read(timeProvider.notifier).update(
+                          (state) => getTime.format(context),
+                        );
+                  }
+                },
               ),
             ],
           ),

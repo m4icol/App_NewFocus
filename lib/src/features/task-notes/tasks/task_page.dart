@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
 import 'package:newfocus_v2/src/features/task-notes/tasks/widgets/category_task.dart';
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
+import 'package:newfocus_v2/src/widgets/card_todo_widget.dart';
 import 'package:newfocus_v2/src/widgets/custom_app_bar.dart';
 
 class TaskPage extends StatelessWidget {
@@ -57,6 +58,12 @@ class TaskPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const CategoryTask(),
+                const SizedBox(height: 30),
+                ListView.builder(
+                  itemCount: 1,
+                  shrinkWrap: true,
+                  itemBuilder: ((context, index) => CardTodoListWidget()),
+                ),
               ],
             ),
           ),

@@ -353,7 +353,9 @@ class CancelTask extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: OutlinedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
         style: OutlinedButton.styleFrom(
           fixedSize: const Size(120, 50),
           foregroundColor: Pallete.appBarNew,
