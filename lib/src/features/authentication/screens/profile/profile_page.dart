@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:newfocus_v2/src/features/authentication/screens/welcome/welcome.dart';
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
 import 'package:newfocus_v2/src/widgets/custom_app_bar.dart';
 

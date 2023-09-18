@@ -25,7 +25,8 @@ class SignUpForm extends StatelessWidget {
                 prefixIconColor: Pallete.customColor1,
                 floatingLabelStyle:
                     const TextStyle(color: Pallete.customColor1),
-                focusedBorder: const OutlineInputBorder(
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
                   borderSide: BorderSide(width: 2, color: Pallete.customColor1),
                 ),
                 border: OutlineInputBorder(
@@ -43,7 +44,8 @@ class SignUpForm extends StatelessWidget {
                 prefixIconColor: Pallete.customColor1,
                 floatingLabelStyle:
                     const TextStyle(color: Pallete.customColor1),
-                focusedBorder: const OutlineInputBorder(
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
                   borderSide: BorderSide(width: 2, color: Pallete.customColor1),
                 ),
                 border: OutlineInputBorder(
@@ -62,7 +64,8 @@ class SignUpForm extends StatelessWidget {
                 prefixIconColor: Pallete.customColor1,
                 floatingLabelStyle:
                     const TextStyle(color: Pallete.customColor1),
-                focusedBorder: const OutlineInputBorder(
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
                   borderSide: BorderSide(width: 2, color: Pallete.customColor1),
                 ),
                 border: OutlineInputBorder(

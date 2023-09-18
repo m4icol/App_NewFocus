@@ -36,6 +36,13 @@ class TTextTheme {
       fontWeight: FontWeight.w600,
       overflow: TextOverflow.ellipsis,
     ),
+
+    headlineSmall: TextStyle(
+      color: Color.fromARGB(255, 28, 28, 28),
+      fontSize: 19,
+      fontWeight: FontWeight.w600,
+      overflow: TextOverflow.ellipsis,
+    ),
   );
 
   static TextTheme darkTextTheme = const TextTheme(
@@ -49,7 +56,7 @@ class TTextTheme {
     // Titulo de cada task/note
     titleSmall: TextStyle(
       color: Color.fromARGB(255, 255, 255, 255),
-      fontSize: 22,
+      fontSize: 23,
       fontWeight: FontWeight.w700,
       overflow: TextOverflow.ellipsis,
     ),
@@ -69,6 +76,13 @@ class TTextTheme {
     labelMedium: TextStyle(
       color: Color.fromARGB(255, 255, 255, 255),
       fontSize: 15,
+      fontWeight: FontWeight.w600,
+      overflow: TextOverflow.ellipsis,
+    ),
+
+    headlineSmall: TextStyle(
+      color: Color.fromARGB(255, 255, 255, 255),
+      fontSize: 19,
       fontWeight: FontWeight.w600,
       overflow: TextOverflow.ellipsis,
     ),

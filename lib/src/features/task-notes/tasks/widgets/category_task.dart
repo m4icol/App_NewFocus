@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
 
-class CategoryDashBoard extends StatelessWidget {
-  const CategoryDashBoard({super.key});
+class CategoryTask extends StatelessWidget {
+  const CategoryTask({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class CategoryDashBoard extends StatelessWidget {
                     height: 30,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      color: Pallete.appBarNew,
+                      color: Pallete.categoryColor1,
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -46,7 +46,7 @@ class CategoryDashBoard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Importante',
+                          'Casual',
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                         Text(
@@ -87,7 +87,7 @@ class CategoryDashBoard extends StatelessWidget {
                     height: 30,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      color: Pallete.appBarFocus,
+                      color: Pallete.categoryColor2,
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -137,9 +137,8 @@ class CategoryDashBoard extends StatelessWidget {
                     width: 30,
                     height: 30,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: Color.fromARGB(255, 154, 201, 245),
-                    ),
+                        borderRadius: BorderRadius.circular(6),
+                        color: Pallete.categoryColor3),
                   ),
                   const SizedBox(width: 12),
                   Flexible(

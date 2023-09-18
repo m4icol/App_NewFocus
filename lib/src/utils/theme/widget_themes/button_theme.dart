@@ -6,7 +6,8 @@ import 'package:newfocus_v2/src/features/authentication/screens/forget_password/
 import 'package:newfocus_v2/src/features/authentication/screens/login/login_screen.dart';
 import 'package:newfocus_v2/src/features/authentication/screens/signup/signup_screen.dart';
 import 'package:newfocus_v2/src/features/authentication/screens/welcome/welcome.dart';
-import 'package:newfocus_v2/src/features/home/screens/navigation_bar/navigation_bar.dart';
+import 'package:newfocus_v2/src/features/task-notes/tasks/models/showModal_task.dart';
+import 'package:newfocus_v2/src/widgets/navigation_bar.dart';
 
 class SingUpButton extends StatelessWidget {
   const SingUpButton({Key? key});
@@ -247,6 +248,46 @@ class OTPButtom extends StatelessWidget {
   }
 }
 
+class NewTask extends StatelessWidget {
+  const NewTask({Key? key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: OutlinedButton(
+        onPressed: () {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            context: context,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            builder: (context) => CreateTaskShowModal(),
+          );
+        },
+        style: OutlinedButton.styleFrom(
+          fixedSize: const Size(92, 30),
+          foregroundColor: Pallete.customColor1,
+          side: const BorderSide(color: Pallete.customColor1),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        child: const Text(
+          '+ Agregar',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 13,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class SignOutButton extends StatelessWidget {
   const SignOutButton({super.key});
 
@@ -299,5 +340,72 @@ class SignOutButton extends StatelessWidget {
 
   Future<void> signOutGoogle() async {
     await GoogleSignIn().signOut();
+  }
+}
+
+class CancelTask extends StatelessWidget {
+  const CancelTask({Key? key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: OutlinedButton(
+        onPressed: () {},
+        style: OutlinedButton.styleFrom(
+          fixedSize: const Size(120, 50),
+          foregroundColor: Pallete.appBarNew,
+          side: const BorderSide(color: Pallete.appBarNew),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        child: const Text(
+          'Cancelar',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CreateTask extends StatelessWidget {
+  const CreateTask({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Pallete.gradient1,
+            Pallete.gradient3,
+          ],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          fixedSize: const Size(120, 50),
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+        ),
+        child: const Text(
+          'Crear',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:newfocus_v2/src/features/home/screens/dashboard/widgets/category_dashboard.dart';
 import 'package:newfocus_v2/src/widgets/custom_app_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DashBoard extends StatelessWidget {
   final String? displayName;
@@ -12,13 +12,12 @@ class DashBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
 
-    // Variable para rastrear si ya se mostró el BottomSheet
-    bool isBottomSheetShown = false;
+    void showBottomSheetOnce(BuildContext context) async {
+      final prefs = await SharedPreferences.getInstance();
+      final bool hasShownBottomSheet =
+          prefs.getBool('hasShownBottomSheet') ?? false;
 
-    // Función para mostrar el BottomSheet
-    void showBottomSheetOnce() {
-      if (!isBottomSheetShown) {
-        isBottomSheetShown = true;
+      if (hasShownBottomSheet) {
         showModalBottomSheet(
           context: context,
           isScrollControlled: true,
@@ -71,12 +70,14 @@ class DashBoard extends StatelessWidget {
             ),
           ),
         );
+
+        // Marca el modal como mostrado
+        await prefs.setBool('hasShownBottomSheet', true);
       }
     }
 
-    // Llama a la función para mostrar el BottomSheet automáticamente
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      showBottomSheetOnce();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showBottomSheetOnce(context);
     });
 
     return SafeArea(
@@ -97,7 +98,6 @@ class DashBoard extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 const SizedBox(height: 20),
-                CategoryDashBoard(),
               ],
             ),
           ),
@@ -113,11 +113,11 @@ class DashBoard extends StatelessWidget {
         Navigator.of(context).pop();
       },
       style: ElevatedButton.styleFrom(
-        primary: Color.fromARGB(255, 204, 185, 241),
+        backgroundColor: const Color.fromARGB(255, 204, 185, 241),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        padding: EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -128,10 +128,10 @@ class DashBoard extends StatelessWidget {
             height: 32.0,
             fit: BoxFit.cover,
           ),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 13,
             ),

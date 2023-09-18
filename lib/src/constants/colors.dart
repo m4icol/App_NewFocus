@@ -18,6 +18,7 @@ class Pallete {
 
   static const Color backgroundColor = Color.fromRGBO(28, 28, 31, 1);
   static const Color borderColor = Color.fromRGBO(52, 51, 67, 1);
+  static const Color borderColor1 = Color.fromARGB(255, 103, 94, 109);
   static const Color text = Colors.white;
 
   static const Color customColor1 = Color.fromARGB(255, 190, 159, 253);
@@ -25,4 +26,8 @@ class Pallete {
 
   static const Color appBarNew = Color.fromARGB(255, 227, 130, 255);
   static const Color appBarFocus = Color.fromARGB(255, 250, 198, 113);
+
+  static const Color categoryColor1 = Color.fromARGB(255, 218, 163, 255);
+  static const Color categoryColor2 = Color.fromARGB(255, 255, 210, 143);
+  static const Color categoryColor3 = Color.fromARGB(255, 102, 231, 253);
 }

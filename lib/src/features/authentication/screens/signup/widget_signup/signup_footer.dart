@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
 import 'package:newfocus_v2/src/constants/image_strings.dart';
 import 'package:newfocus_v2/src/features/authentication/screens/login/login_screen.dart';
-import 'package:newfocus_v2/src/features/home/screens/navigation_bar/navigation_bar.dart';
+import 'package:newfocus_v2/src/widgets/navigation_bar.dart';
 
 class SignUpFooter extends StatelessWidget {
   SignUpFooter({
