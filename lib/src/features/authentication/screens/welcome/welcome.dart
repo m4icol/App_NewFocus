@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newfocus_v2/src/constants/image_strings.dart';
+import 'package:newfocus_v2/src/features/authentication/screens/login/login_screen.dart';
+import 'package:newfocus_v2/src/features/authentication/screens/signup/signup_screen.dart';
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -41,12 +43,26 @@ class WelcomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 1),
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 39),
-              child: const Column(
+              margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 68),
+              child: Column(
                 children: [
-                  LoginButton(),
+                  CustomOutlinedButton(
+                    text: 'Iniciar sesión',
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ));
+                    },
+                  ),
                   SizedBox(height: 25),
-                  SingUpButton(),
+                  CustomOutlinedButtonBorder(
+                    text: 'Registrarse',
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => SignUpScreen(),
+                      ));
+                    },
+                  ),
                 ],
               ),
             ),

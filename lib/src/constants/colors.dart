@@ -21,13 +21,13 @@ class Pallete {
   static const Color borderColor1 = Color.fromARGB(255, 103, 94, 109);
   static const Color text = Colors.white;
 
-  static const Color customColor1 = Color.fromARGB(255, 190, 159, 253);
+  static const Color customColor1 = Color.fromARGB(255, 176, 140, 248);
   static const Color customShadow1 = Color.fromARGB(144, 205, 63, 248);
 
   static const Color appBarNew = Color.fromARGB(255, 227, 130, 255);
   static const Color appBarFocus = Color.fromARGB(255, 250, 198, 113);
 
-  static const Color categoryColor1 = Color.fromARGB(255, 218, 163, 255);
-  static const Color categoryColor2 = Color.fromARGB(255, 255, 210, 143);
-  static const Color categoryColor3 = Color.fromARGB(255, 102, 231, 253);
+  static const Color categoryColor1 = Color.fromARGB(255, 228, 178, 150);
+  static const Color categoryColor2 = Color.fromARGB(255, 184, 243, 166);
+  static const Color categoryColor3 = Color.fromARGB(255, 175, 186, 247);
 }

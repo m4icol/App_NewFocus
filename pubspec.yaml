@@ -19,11 +19,13 @@ dependencies:
   liquid_swipe: ^3.1.0
   smooth_page_indicator: ^1.1.0
   flutter_otp_text_field: ^1.1.1
+  
   firebase_core: ^2.15.1
   firebase_auth: ^4.9.0
   google_sign_in: ^6.1.5
   cloud_firestore: ^4.9.1
   firebase_crashlytics: ^3.3.5
+
   provider: ^6.0.5
   fl_chart: ^0.63.0
   shared_preferences: ^2.2.1

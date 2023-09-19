@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
 import 'package:newfocus_v2/src/constants/image_strings.dart';
+import 'package:newfocus_v2/src/features/authentication/screens/forget_password/forget_password_otp/otp_screen.dart';
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
 
 class ForgetPasswordMailScreen extends StatelessWidget {
@@ -50,7 +51,16 @@ class ForgetPasswordMailScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                ForgetPasswordButtonConfirm(),
+                CustomOutlinedButton(
+                  text: 'Siguiente',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const OTPScreen()),
+                    );
+                  },
+                )
               ],
             ),
           ),

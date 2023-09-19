@@ -3,60 +3,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
+import 'package:newfocus_v2/src/features/task-notes/tasks/models/todo_modal.dart';
 import 'package:newfocus_v2/src/features/task-notes/tasks/provider/date_time_provider.dart';
 import 'package:newfocus_v2/src/features/task-notes/tasks/provider/radio_provider.dart';
+import 'package:newfocus_v2/src/features/task-notes/tasks/provider/service_provider.dart';
 import 'package:newfocus_v2/src/features/task-notes/tasks/widgets/date_time_widget.dart';
 import 'package:newfocus_v2/src/features/task-notes/tasks/widgets/radio_widget.dart';
+import 'package:newfocus_v2/src/features/task-notes/tasks/widgets/textfield_widget.dart';
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
-import 'package:provider/provider.dart';
 
 class CreateTaskShowModal extends ConsumerWidget {
-  const CreateTaskShowModal({
-    super.key,
-  });
+  CreateTaskShowModal({Key? key}) : super(key: key);
+
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dateProv = ref.watch(dateProvider);
     return Container(
-      height: MediaQuery.of(context).size.height * 0.76,
+      color: Theme.of(context).brightness == Brightness.light
+          ? Color.fromARGB(255, 247, 236, 252)
+          : Color.fromRGBO(28, 28, 31, 1),
+      height: MediaQuery.of(context).size.height * 0.90,
       padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 40),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: double.infinity,
-            child: Text(
-              'Nueva Tarea',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-          ),
-          const Divider(
-            height: 37,
-            color: Pallete.borderColor1,
-            thickness: 1.5,
-          ),
+          SizedBox(height: 20),
           Text(
             'Titulo de la Tarea',
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           const SizedBox(height: 8),
-          TextFormField(
+          TextFieldWidget(
             maxLines: 1,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-            decoration: InputDecoration(
-              hintText: 'Agregar titulo',
-              prefixIconColor: Pallete.customColor1,
-              floatingLabelStyle: const TextStyle(color: Pallete.customColor1),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: BorderSide(width: 2, color: Pallete.customColor1),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
+            hintText: 'Agregar título',
+            txtController: titleController,
           ),
           const SizedBox(height: 20),
           Text(
@@ -64,21 +47,10 @@ class CreateTaskShowModal extends ConsumerWidget {
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           const SizedBox(height: 8),
-          TextFormField(
-            maxLines: 4,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-            decoration: InputDecoration(
-              hintText: 'Agregar descripción',
-              prefixIconColor: Pallete.customColor1,
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 2, color: Pallete.customColor1),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              floatingLabelStyle: const TextStyle(color: Pallete.customColor1),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
+          TextFieldWidget(
+            maxLines: 2,
+            hintText: 'Agregar descripción',
+            txtController: descriptionController,
           ),
           const SizedBox(height: 18),
           Text(
@@ -164,14 +136,53 @@ class CreateTaskShowModal extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 35),
-          const Row(
+          Row(
             children: [
               Expanded(
-                child: CancelTask(),
+                child: CustomOutlinedButtonBorder(
+                  text: 'Cancelar',
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
               ),
               SizedBox(width: 20),
               Expanded(
-                child: CreateTask(),
+                child: CustomOutlinedButton(
+                  text: 'Agregar',
+                  onPressed: () {
+                    final getRadioValue = ref.read(radioProvider);
+                    String category = '';
+
+                    switch (getRadioValue) {
+                      case 1:
+                        category = 'Casual';
+                        break;
+                      case 2:
+                        category = 'Salud';
+                        break;
+                      case 3:
+                        category = 'Estudio';
+                        break;
+                    }
+
+                    ref.read(serviceProvider).addNewTask(
+                          TodoModal(
+                            titleTask: titleController.text,
+                            descriptionTask: descriptionController.text,
+                            category: category,
+                            dateTask: ref.read(dateProvider),
+                            timeTask: ref.read(timeProvider),
+                            isDone: false,
+                          ),
+                        );
+
+                    titleController.clear();
+                    descriptionController.clear();
+                    ref.read(radioProvider.notifier).update((state) => 0);
+                    Navigator.pop(context);
+                  },
+                ),
               ),
             ],
           ),

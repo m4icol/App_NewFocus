@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:newfocus_v2/src/constants/image_strings.dart';
+import 'package:newfocus_v2/src/features/authentication/screens/welcome/welcome.dart';
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
 
 class OTPScreen extends StatelessWidget {
@@ -45,7 +46,16 @@ class OTPScreen extends StatelessWidget {
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 60),
-              OTPButtom(),
+              CustomOutlinedButton(
+                text: 'Siguiente',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WelcomeScreen()),
+                  );
+                },
+              )
             ],
           ),
         ),

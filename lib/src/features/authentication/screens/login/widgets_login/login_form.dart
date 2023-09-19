@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
 import 'package:newfocus_v2/src/features/authentication/screens/forget_password/forget_password_options/forget_password_model_bottom_sheet.dart';
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
+import 'package:newfocus_v2/src/widgets/navigation_bar.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -76,7 +77,16 @@ class LoginForm extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            const LoginButtonConfirm()
+            CustomOutlinedButton(
+              text: 'Ingresar',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NavigationBarWidget()),
+                );
+              },
+            )
           ],
         ),
       ),

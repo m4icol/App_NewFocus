@@ -2,15 +2,62 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
-import 'package:newfocus_v2/src/features/authentication/screens/forget_password/forget_password_otp/otp_screen.dart';
-import 'package:newfocus_v2/src/features/authentication/screens/login/login_screen.dart';
-import 'package:newfocus_v2/src/features/authentication/screens/signup/signup_screen.dart';
 import 'package:newfocus_v2/src/features/authentication/screens/welcome/welcome.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/models/showModal_task.dart';
-import 'package:newfocus_v2/src/widgets/navigation_bar.dart';
 
-class SingUpButton extends StatelessWidget {
-  const SingUpButton({Key? key});
+class CustomOutlinedButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  const CustomOutlinedButton({
+    Key? key,
+    required this.text,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Pallete.gradient1,
+            Pallete.gradient3,
+          ],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        ),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: SizedBox(
+        width: double.infinity,
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+          ),
+          child: Text(
+            text,
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomOutlinedButtonBorder extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  const CustomOutlinedButtonBorder({
+    Key? key,
+    required this.text,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,22 +66,18 @@ class SingUpButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: OutlinedButton(
-        onPressed: () {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => SignUpScreen(),
-          ));
-        },
+        onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           fixedSize: const Size(220, 50),
           foregroundColor: Pallete.appBarNew,
           side: const BorderSide(color: Pallete.appBarNew),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(10),
           ),
         ),
-        child: const Text(
-          'Registrarse',
-          style: TextStyle(
+        child: Text(
+          text,
+          style: const TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 16,
           ),
@@ -44,212 +87,15 @@ class SingUpButton extends StatelessWidget {
   }
 }
 
-class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+class CustomOutlinedButtonSmall extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            Pallete.gradient1,
-            Pallete.gradient3,
-          ],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-        ),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => LoginScreen(),
-          ));
-        },
-        style: ElevatedButton.styleFrom(
-          fixedSize: const Size(220, 50),
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-        ),
-        child: const Text(
-          'Iniciar sesión',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class LoginButtonConfirm extends StatelessWidget {
-  const LoginButtonConfirm({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            Pallete.gradient1,
-            Pallete.gradient3,
-          ],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-        ),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const NavigationBarWidget()),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          fixedSize: const Size(280, 50),
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-        ),
-        child: const Text(
-          'Ingresar',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class SignUpButtonConfirm extends StatelessWidget {
-  const SignUpButtonConfirm({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            Pallete.gradient1,
-            Pallete.gradient3,
-          ],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-        ),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const NavigationBarWidget()),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          fixedSize: const Size(280, 50),
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-        ),
-        child: const Text(
-          'Ingresar',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ForgetPasswordButtonConfirm extends StatelessWidget {
-  const ForgetPasswordButtonConfirm({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            Pallete.gradient1,
-            Pallete.gradient3,
-          ],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-        ),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => OTPScreen(),
-          ));
-        },
-        style: ElevatedButton.styleFrom(
-          fixedSize: const Size(300, 50),
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-        ),
-        child: const Text(
-          'Next',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class OTPButtom extends StatelessWidget {
-  const OTPButtom({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            Pallete.gradient1,
-            Pallete.gradient3,
-          ],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-        ),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => WelcomeScreen(),
-          ));
-        },
-        style: ElevatedButton.styleFrom(
-          fixedSize: const Size(250, 50),
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-        ),
-        child: const Text(
-          'Next',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class NewTask extends StatelessWidget {
-  const NewTask({Key? key});
+  const CustomOutlinedButtonSmall({
+    Key? key,
+    required this.text,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -258,27 +104,18 @@ class NewTask extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: OutlinedButton(
-        onPressed: () {
-          showModalBottomSheet(
-            isScrollControlled: true,
-            context: context,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            builder: (context) => CreateTaskShowModal(),
-          );
-        },
+        onPressed: onPressed,
         style: OutlinedButton.styleFrom(
-          fixedSize: const Size(92, 30),
+          fixedSize: const Size(90, 30),
           foregroundColor: Pallete.customColor1,
           side: const BorderSide(color: Pallete.customColor1),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(10),
           ),
         ),
-        child: const Text(
-          '+ Agregar',
-          style: TextStyle(
+        child: Text(
+          text,
+          style: const TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 13,
           ),
@@ -288,96 +125,13 @@ class NewTask extends StatelessWidget {
   }
 }
 
-class SignOutButton extends StatelessWidget {
-  const SignOutButton({super.key});
+class CustomOutlinedButtonCreate extends StatelessWidget {
+  final VoidCallback onPressed;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            Pallete.gradient1,
-            Pallete.gradient3,
-          ],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-        ),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: ElevatedButton(
-        onPressed: () async {
-          // Implementa la funcionalidad para cerrar sesión en Firebase.
-          await FirebaseAuth.instance.signOut();
-
-          // Llama a la función para desconectar la cuenta de Google.
-          await signOutGoogle();
-
-          // Después de cerrar sesión, navega a la pantalla de WelcomeScreen().
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => WelcomeScreen(),
-            ),
-            (Route<dynamic> route) =>
-                false, // Esto elimina las rutas anteriores de la pila de navegación.
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          fixedSize: const Size(280, 50),
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-        ),
-        child: const Text(
-          'Cerrar sesión',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Future<void> signOutGoogle() async {
-    await GoogleSignIn().signOut();
-  }
-}
-
-class CancelTask extends StatelessWidget {
-  const CancelTask({Key? key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: OutlinedButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        style: OutlinedButton.styleFrom(
-          fixedSize: const Size(120, 50),
-          foregroundColor: Pallete.appBarNew,
-          side: const BorderSide(color: Pallete.appBarNew),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        child: const Text(
-          'Cancelar',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CreateTask extends StatelessWidget {
-  const CreateTask({super.key});
+  const CustomOutlinedButtonCreate({
+    Key? key,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -394,7 +148,7 @@ class CreateTask extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           fixedSize: const Size(120, 50),
           backgroundColor: Colors.transparent,
@@ -409,5 +163,32 @@ class CreateTask extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class SignOutButton extends StatelessWidget {
+  const SignOutButton({Key? key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomOutlinedButton(
+      text: 'Cerrar sesión',
+      onPressed: () async {
+        await FirebaseAuth.instance.signOut();
+
+        await signOutGoogle();
+
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => WelcomeScreen(),
+          ),
+          (Route<dynamic> route) => false,
+        );
+      },
+    );
+  }
+
+  Future<void> signOutGoogle() async {
+    await GoogleSignIn().signOut();
   }
 }
