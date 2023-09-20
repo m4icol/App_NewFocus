@@ -3,10 +3,9 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newfocus_v2/firebase_options.dart';
-import 'package:newfocus_v2/objectbox.g.dart';
 import 'package:newfocus_v2/src/features/authentication/screens/on_boarding/on_boarding_screen.dart';
+import 'package:newfocus_v2/src/features/task-notes/notes/objectbox/objectbox_interface.dart';
 import 'package:newfocus_v2/src/utils/theme/theme.dart';
-import 'package:objectbox/objectbox.dart';
 
 late ObjectBox objectBox;
 
@@ -35,16 +34,5 @@ class MyApp extends StatelessWidget {
         home: OnBoardingScreen(),
       ),
     );
-  }
-}
-
-class ObjectBox {
-  late final Store store;
-
-  ObjectBox._create(this.store) {}
-
-  static Future<ObjectBox> create() async {
-    final store = await openStore();
-    return ObjectBox._create(store);
   }
 }

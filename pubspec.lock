@@ -633,7 +633,7 @@ packages:
     source: hosted
     version: "2.3.0"
   objectbox_generator:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: objectbox_generator
       sha256: "78afc5cde3c4da721deafe61e3daac1bcdce37c0d43134527f32f85f0a3f9748"

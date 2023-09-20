@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:newfocus_v2/main.dart';
-import 'package:newfocus_v2/objectbox.g.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
+import 'package:newfocus_v2/src/features/task-notes/notes/notes_folder/notes_creator.dart';
+import 'package:newfocus_v2/src/features/task-notes/notes/notes_folder/notes_widget.dart';
+import 'package:newfocus_v2/model.dart';
 import 'package:newfocus_v2/src/widgets/custom_app_bar.dart';
-
-import 'model_notes.dart';
+import 'package:objectbox/objectbox.dart';
 
 class NotesScreen extends StatefulWidget {
   const NotesScreen({Key? key}) : super(key: key);
@@ -14,13 +15,13 @@ class NotesScreen extends StatefulWidget {
 }
 
 class _NotesScreenState extends State<NotesScreen> {
-  Box<Note>? notesBox; // Usa el modelo de NotesModel
-  Stream<List<Note>>? fetchAllNotes;
+  Box<NotesModel>? notesBox; // Usa el modelo de NotesModel
+  Stream<List<NotesModel>>? fetchAllNotes;
 
   @override
   void initState() {
     super.initState();
-    notesBox = objectBox.store.box<Note>(); // Usa el box de NotesModel
+    notesBox = objectBox.store.box<NotesModel>(); // Usa el box de NotesModel
     print(notesBox!.count());
     setState(() {
       fetchAllNotes = notesBox!
@@ -69,12 +70,12 @@ class _NotesScreenState extends State<NotesScreen> {
                       ),
                       child: IconButton(
                         onPressed: () {
-                          // Navigator.of(context).push(
-                          //   MaterialPageRoute(
-                          //     builder: (context) =>
-                          // const NotesCreatorScreen(), // Usa la pantalla de creación de notas
-                          //   ),
-                          // );
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const NotesCreatorScreen(), // Usa la pantalla de creación de notas
+                            ),
+                          );
                         },
                         icon: const Icon(Icons.add),
                         color: Pallete.customColor1,
@@ -85,7 +86,7 @@ class _NotesScreenState extends State<NotesScreen> {
                 ),
               ),
               const SizedBox(height: 25),
-              StreamBuilder<List<Note>>(
+              StreamBuilder<List<NotesModel>>(
                 // Usa el modelo de NotesModel
                 stream: fetchAllNotes!,
                 builder: (context, snapshot) {
@@ -113,8 +114,8 @@ class _NotesScreenState extends State<NotesScreen> {
                       shrinkWrap: true,
                       itemCount: notes.length,
                       itemBuilder: (context, index) {
-                        //NoteWidget(
-                        //notes[index]); // Usa el widget para mostrar notas
+                        return NoteWidget(
+                            notes[index]); // Usa el widget para mostrar notas
                       },
                     );
                   }
