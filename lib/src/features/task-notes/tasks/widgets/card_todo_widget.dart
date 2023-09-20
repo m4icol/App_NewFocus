@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
@@ -37,7 +36,6 @@ class CardTodoListWidget extends ConsumerWidget {
         return Container(
           margin: const EdgeInsets.symmetric(vertical: 8),
           width: double.infinity,
-          height: 120,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
@@ -56,26 +54,22 @@ class CardTodoListWidget extends ConsumerWidget {
                   ),
                 ),
                 width: 20,
+                height: 112,
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.only(left: 15, right: 6, top: 8),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ListTile(
                         contentPadding: EdgeInsets.zero,
-                        leading: IconButton(
-                            icon: Icon(CupertinoIcons.delete),
-                            onPressed: () => ref
-                                .read(serviceProvider)
-                                .deleteTask(todoData[getIndex].docID)),
                         title: Text(
                           todoData[getIndex].titleTask,
-                          maxLines: 1,
+                          maxLines: null,
                           style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 17,
                               fontWeight: FontWeight.w600,
                               decoration: todoData[getIndex].isDone
                                   ? TextDecoration.lineThrough
@@ -83,9 +77,9 @@ class CardTodoListWidget extends ConsumerWidget {
                         ),
                         subtitle: Text(
                           todoData[getIndex].descriptionTask,
-                          maxLines: 1,
+                          maxLines: 2,
                           style: TextStyle(
-                              fontSize: 13.5,
+                              fontSize: 13,
                               decoration: todoData[getIndex].isDone
                                   ? TextDecoration.lineThrough
                                   : null),
@@ -96,9 +90,43 @@ class CardTodoListWidget extends ConsumerWidget {
                             activeColor: Pallete.borderColor1,
                             shape: const CircleBorder(),
                             value: todoData[getIndex].isDone,
-                            onChanged: (value) => ref
-                                .read(serviceProvider)
-                                .updateTask(todoData[getIndex].docID, value!),
+                            onChanged: (value) async {
+                              if (value == true) {
+                                ref
+                                    .read(serviceProvider)
+                                    .updateTask(todoData[getIndex].docID, true);
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: Theme.of(context)
+                                                .brightness ==
+                                            Brightness.light
+                                        ? const Color.fromARGB(
+                                            255, 247, 236, 252)
+                                        : const Color.fromRGBO(28, 28, 31, 1),
+                                    content: Text(
+                                      'La tarea se eliminará en 5 segundos.',
+                                      style: TextStyle(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                );
+
+                                await Future.delayed(
+                                    const Duration(seconds: 4));
+
+                                ref
+                                    .read(serviceProvider)
+                                    .deleteTask(todoData[getIndex].docID);
+                              } else {
+                                ref.read(serviceProvider).updateTask(
+                                    todoData[getIndex].docID, false);
+                              }
+                            },
                           ),
                         ),
                       ),
@@ -108,14 +136,21 @@ class CardTodoListWidget extends ConsumerWidget {
                           child: Column(
                             children: [
                               const Divider(
+                                height: 15,
                                 thickness: 1.5,
                                 color: Pallete.borderColor,
                               ),
                               Row(
                                 children: [
-                                  Text(todoData[getIndex].dateTask),
+                                  Text(
+                                    todoData[getIndex].dateTask,
+                                    style: TextStyle(fontSize: 12),
+                                  ),
                                   SizedBox(width: 10),
-                                  Text(todoData[getIndex].timeTask)
+                                  Text(
+                                    todoData[getIndex].timeTask,
+                                    style: TextStyle(fontSize: 12),
+                                  )
                                 ],
                               ),
                             ],
@@ -135,7 +170,7 @@ class CardTodoListWidget extends ConsumerWidget {
           StackTrace.toString(),
         ),
       ),
-      loading: () => Center(
+      loading: () => const Center(
         child: CircularProgressIndicator(),
       ),
     );

@@ -23,23 +23,28 @@ class RadioWidget extends ConsumerWidget {
     return Material(
       child: Theme(
         data: ThemeData(unselectedWidgetColor: categoryColor),
-        child: RadioListTile(
-          activeColor: categoryColor,
-          contentPadding: EdgeInsets.zero,
-          title: Transform.translate(
-            offset: Offset(-15, 0),
-            child: Text(
-              titleRadio,
-              style: TextStyle(
-                  color: categoryColor,
-                  fontSize: 12.4,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Poppins'),
+        child: Container(
+          color: Theme.of(context).brightness == Brightness.light
+              ? const Color.fromARGB(255, 247, 236, 252)
+              : const Color.fromRGBO(28, 28, 31, 1),
+          child: RadioListTile(
+            activeColor: categoryColor,
+            contentPadding: EdgeInsets.zero,
+            title: Transform.translate(
+              offset: Offset(-15, 0),
+              child: Text(
+                titleRadio,
+                style: TextStyle(
+                    color: categoryColor,
+                    fontSize: 12.4,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins'),
+              ),
             ),
+            value: valueInput,
+            groupValue: radio,
+            onChanged: (value) => onChangeValue(),
           ),
-          value: valueInput,
-          groupValue: radio,
-          onChanged: (value) => onChangeValue(),
         ),
       ),
     );

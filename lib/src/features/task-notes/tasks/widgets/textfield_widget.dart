@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:newfocus_v2/src/constants/colors.dart';
 
 class TextFieldWidget extends StatefulWidget {
@@ -24,6 +26,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       controller: widget.txtController,
       maxLines: widget.maxLines,
       style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(39),
+      ],
       decoration: InputDecoration(
         hintText: widget.hintText,
         prefixIconColor: Pallete.customColor1,

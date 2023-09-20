@@ -18,6 +18,7 @@ class DashBoard extends StatelessWidget {
           prefs.getBool('hasShownBottomSheet') ?? false;
 
       if (hasShownBottomSheet) {
+        // ignore: use_build_context_synchronously
         showModalBottomSheet(
           context: context,
           isScrollControlled: true,

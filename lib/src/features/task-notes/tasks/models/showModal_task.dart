@@ -22,9 +22,6 @@ class CreateTaskShowModal extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final dateProv = ref.watch(dateProvider);
     return Container(
-      color: Theme.of(context).brightness == Brightness.light
-          ? Color.fromARGB(255, 247, 236, 252)
-          : Color.fromRGBO(28, 28, 31, 1),
       height: MediaQuery.of(context).size.height * 0.90,
       padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 40),
       child: Column(
@@ -103,12 +100,13 @@ class CreateTaskShowModal extends ConsumerWidget {
                   final getValue = await showDatePicker(
                     context: context,
                     initialDate: DateTime.now(),
-                    firstDate: DateTime(2021),
+                    firstDate: DateTime(2023),
                     lastDate: DateTime(2025),
                   );
 
                   if (getValue != null) {
-                    final format = DateFormat.yMd();
+                    final format =
+                        DateFormat('dd/MM/yyyy'); // Cambia el formato aquí
                     ref.read(dateProvider.notifier).update(
                           (state) => format.format(getValue),
                         );

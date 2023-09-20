@@ -37,6 +37,9 @@ class DateTimeWidget extends ConsumerWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     decoration: BoxDecoration(
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? const Color.fromARGB(255, 247, 236, 252)
+                          : const Color.fromRGBO(28, 28, 31, 1),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         width: 1.3,

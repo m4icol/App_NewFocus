@@ -28,6 +28,6 @@ class Pallete {
   static const Color appBarFocus = Color.fromARGB(255, 250, 198, 113);
 
   static const Color categoryColor1 = Color.fromARGB(255, 228, 178, 150);
-  static const Color categoryColor2 = Color.fromARGB(255, 184, 243, 166);
+  static const Color categoryColor2 = Color.fromARGB(255, 135, 224, 165);
   static const Color categoryColor3 = Color.fromARGB(255, 175, 186, 247);
 }

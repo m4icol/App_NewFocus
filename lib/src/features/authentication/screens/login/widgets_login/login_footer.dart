@@ -31,7 +31,6 @@ class LoginFooter extends StatelessWidget {
             onPressed: () {
               signInWithGoogle().then((success) {
                 if (success) {
-                  // Navegar a NavigationBarWidget() cuando el inicio de sesión tenga éxito
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) => NavigationBarWidget(),

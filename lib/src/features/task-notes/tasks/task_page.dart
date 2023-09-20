@@ -20,69 +20,73 @@ class TaskPage extends ConsumerWidget {
     return SafeArea(
       child: Scaffold(
         appBar: const CustomAppBar(),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Hey, ${user?.displayName ?? "Desconocido"}',
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-                Text(
-                  'Cómo va tu día?',
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-                const Divider(
-                  height: 30,
-                  thickness: 2,
-                  color: Pallete.borderColor,
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Tus tareas',
-                          style: Theme.of(context).textTheme.titleSmall,
+        body: Container(
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Hey, ${user?.displayName ?? "Desconocido"}',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              Text(
+                'Cómo va tu día?',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              const Divider(
+                height: 30,
+                thickness: 2,
+                color: Pallete.borderColor,
+              ),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Tus tareas',
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      Text(
+                        '<Cantidad>',
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                    ],
+                  ),
+                  CustomOutlinedButtonSmall(
+                    text: '+ Agregar',
+                    onPressed: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        Text(
-                          '<Cantidad>',
-                          style: Theme.of(context).textTheme.labelSmall,
-                        ),
-                      ],
-                    ),
-                    CustomOutlinedButtonSmall(
-                      text: '+ Agregar',
-                      onPressed: () {
-                        showModalBottomSheet(
-                          isScrollControlled: true,
-                          context: context,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          builder: (context) => CreateTaskShowModal(),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                const CategoryTask(),
-                const SizedBox(height: 30),
-                ListView.builder(
+                        backgroundColor:
+                            Theme.of(context).brightness == Brightness.light
+                                ? const Color.fromARGB(255, 247, 236, 252)
+                                : const Color.fromRGBO(28, 28, 31, 1),
+                        builder: (context) => CreateTaskShowModal(),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              const CategoryTask(),
+              const SizedBox(height: 30),
+              Expanded(
+                child: ListView.builder(
                   itemCount: todoData.value?.length ?? 0,
                   shrinkWrap: true,
                   itemBuilder: (context, index) => CardTodoListWidget(
                     getIndex: index,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
