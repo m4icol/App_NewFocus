@@ -14,30 +14,30 @@ import 'package:objectbox/internal.dart'; // generated code can access "internal
 import 'package:objectbox/objectbox.dart';
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'model.dart';
+import 'src/features/task-notes/notes/model_notes.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <ModelEntity>[
   ModelEntity(
-      id: const IdUid(1, 2714579956331554827),
-      name: 'NotesModel',
-      lastPropertyId: const IdUid(3, 7164861045770542251),
+      id: const IdUid(1, 7241149553738890141),
+      name: 'Note',
+      lastPropertyId: const IdUid(3, 8463254931208390918),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 5653286429685379518),
+            id: const IdUid(1, 8228690128817107580),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 6994632237892415633),
+            id: const IdUid(2, 4664682442744965714),
             name: 'title',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 7164861045770542251),
-            name: 'description',
+            id: const IdUid(3, 8463254931208390918),
+            name: 'content',
             type: 9,
             flags: 0)
       ],
@@ -72,7 +72,7 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(1, 2714579956331554827),
+      lastEntityId: const IdUid(1, 7241149553738890141),
       lastIndexId: const IdUid(0, 0),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
@@ -85,21 +85,21 @@ ModelDefinition getObjectBoxModel() {
       version: 1);
 
   final bindings = <Type, EntityDefinition>{
-    NotesModel: EntityDefinition<NotesModel>(
+    Note: EntityDefinition<Note>(
         model: _entities[0],
-        toOneRelations: (NotesModel object) => [],
-        toManyRelations: (NotesModel object) => {},
-        getId: (NotesModel object) => object.id,
-        setId: (NotesModel object, int id) {
+        toOneRelations: (Note object) => [],
+        toManyRelations: (Note object) => {},
+        getId: (Note object) => object.id,
+        setId: (Note object, int id) {
           object.id = id;
         },
-        objectToFB: (NotesModel object, fb.Builder fbb) {
+        objectToFB: (Note object, fb.Builder fbb) {
           final titleOffset = fbb.writeString(object.title);
-          final descriptionOffset = fbb.writeString(object.description);
+          final contentOffset = fbb.writeString(object.content);
           fbb.startTable(4);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, titleOffset);
-          fbb.addOffset(2, descriptionOffset);
+          fbb.addOffset(2, contentOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -110,11 +110,9 @@ ModelDefinition getObjectBoxModel() {
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           final titleParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 6, '');
-          final descriptionParam =
-              const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 8, '');
-          final object = NotesModel(
-              id: idParam, title: titleParam, description: descriptionParam);
+          final contentParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 8, '');
+          final object = Note(idParam, titleParam, contentParam);
 
           return object;
         })
@@ -123,17 +121,14 @@ ModelDefinition getObjectBoxModel() {
   return ModelDefinition(model, bindings);
 }
 
-/// [NotesModel] entity fields to define ObjectBox queries.
-class NotesModel_ {
-  /// see [NotesModel.id]
-  static final id =
-      QueryIntegerProperty<NotesModel>(_entities[0].properties[0]);
+/// [Note] entity fields to define ObjectBox queries.
+class Note_ {
+  /// see [Note.id]
+  static final id = QueryIntegerProperty<Note>(_entities[0].properties[0]);
 
-  /// see [NotesModel.title]
-  static final title =
-      QueryStringProperty<NotesModel>(_entities[0].properties[1]);
+  /// see [Note.title]
+  static final title = QueryStringProperty<Note>(_entities[0].properties[1]);
 
-  /// see [NotesModel.description]
-  static final description =
-      QueryStringProperty<NotesModel>(_entities[0].properties[2]);
+  /// see [Note.content]
+  static final content = QueryStringProperty<Note>(_entities[0].properties[2]);
 }

@@ -33,11 +33,11 @@ dependencies:
   flutter_riverpod: ^2.4.0
   intl: ^0.18.1
 
-  objectbox: ^2.3.0
-  objectbox_generator: ^2.3.0
-  
+  objectbox: ^2.0.0
   objectbox_flutter_libs: any
   path_provider: ^2.0.11
+
+
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +45,8 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.0.0
   objectbox_generator: any
+
+  
 
 flutter_native_splash:
   color: "#E5E9FF"

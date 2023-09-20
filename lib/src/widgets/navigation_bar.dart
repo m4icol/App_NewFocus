@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:newfocus_v2/src/features/home/screens/dashboard/dashboard.dart';
-import 'package:newfocus_v2/src/features/task-notes/notes/notes_folder/notes_page.dart';
+import 'package:newfocus_v2/src/features/task-notes/notes/notes_page.dart';
 import 'package:newfocus_v2/src/features/task-notes/tasks/task_page.dart';
 
 class NavigationBarWidget extends StatefulWidget {
