@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:newfocus_v2/src/constants/image_strings.dart';
 import 'package:newfocus_v2/src/features/authentication/screens/profile/profile_page.dart';
+import 'package:newfocus_v2/src/features/task-notes/notes/notes_page.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});

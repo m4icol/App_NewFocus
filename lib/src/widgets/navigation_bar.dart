@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:newfocus_v2/src/features/home/screens/dashboard/dashboard.dart';
+import 'package:newfocus_v2/src/features/task-notes/notes/notes_page.dart';
 import 'package:newfocus_v2/src/features/task-notes/tasks/task_page.dart';
 
 class NavigationBarWidget extends StatefulWidget {
@@ -15,8 +16,8 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
 
   final List<Widget> _screens = [
     const DashBoard(),
-    const DashBoard(),
     TaskPage(),
+    NotesPage(),
     const DashBoard(),
   ];
 
