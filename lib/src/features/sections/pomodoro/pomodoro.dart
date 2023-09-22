@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
 import 'package:newfocus_v2/src/widgets/custom_app_bar.dart';
+import 'package:newfocus_v2/src/widgets/days_header.dart';
 
 class PomodoroScreen extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class PomodoroScreen extends StatefulWidget {
 }
 
 class _PomodoroScreenState extends State<PomodoroScreen> {
-  int focusDuration = 25;
+  int focusDuration = 20;
   int breakDuration = 5;
   bool isRunning = false;
   bool isFocusMode = true;
@@ -92,19 +93,8 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 7),
-              Text(
-                'Hey, ${user?.displayName ?? "Desconocido"}',
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-              Text(
-                'Cómo va tu día?',
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-              const Divider(
-                height: 35,
-                thickness: 2,
-                color: Pallete.borderColor,
+              GreetingWidget(
+                displayName: user?.displayName,
               ),
               Center(
                 child: Column(

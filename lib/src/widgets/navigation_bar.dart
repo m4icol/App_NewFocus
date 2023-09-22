@@ -6,14 +6,15 @@ import 'package:newfocus_v2/src/features/sections/pomodoro/pomodoro.dart';
 import 'package:newfocus_v2/src/features/sections/tasks/task_page.dart';
 
 class NavigationBarWidget extends StatefulWidget {
-  const NavigationBarWidget({super.key});
+  const NavigationBarWidget({Key? key}) : super(key: key);
 
   @override
-  State<NavigationBarWidget> createState() => _NavigationBarWidgetState();
+  _NavigationBarWidgetState createState() => _NavigationBarWidgetState();
 }
 
 class _NavigationBarWidgetState extends State<NavigationBarWidget> {
   int _currentIndex = 0;
+  final PageController _pageController = PageController(initialPage: 0);
 
   final List<Widget> _screens = [
     const DashBoard(),
@@ -25,7 +26,15 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_currentIndex],
+      body: PageView(
+        controller: _pageController,
+        children: _screens,
+        onPageChanged: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
       bottomNavigationBar: CurvedNavigationBar(
         color: const Color.fromARGB(255, 204, 185, 241),
         backgroundColor: Colors.transparent,
@@ -54,10 +63,16 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
           ),
         ],
         animationDuration: const Duration(milliseconds: 350),
+        index: _currentIndex,
         onTap: (index) {
           setState(() {
             _currentIndex = index;
           });
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 350),
+            curve: Curves.ease,
+          );
         },
       ),
     );

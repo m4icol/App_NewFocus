@@ -8,6 +8,7 @@ import 'package:newfocus_v2/src/features/sections/tasks/widgets/category_task.da
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
 import 'package:newfocus_v2/src/features/sections/tasks/widgets/card_todo_widget.dart';
 import 'package:newfocus_v2/src/widgets/custom_app_bar.dart';
+import 'package:newfocus_v2/src/widgets/days_header.dart';
 
 class TaskPage extends ConsumerWidget {
   TaskPage({Key? key, this.displayName}) : super(key: key);
@@ -25,20 +26,9 @@ class TaskPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Hey, ${user?.displayName ?? "Desconocido"}',
-                style: Theme.of(context).textTheme.bodySmall,
+              GreetingWidget(
+                displayName: user?.displayName,
               ),
-              Text(
-                'Cómo va tu día?',
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-              const Divider(
-                height: 30,
-                thickness: 2,
-                color: Pallete.borderColor,
-              ),
-              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
