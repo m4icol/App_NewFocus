@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:newfocus_v2/src/features/task-notes/notes/widgets/textfield_note.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/widgets/textfield_widget.dart';
+import 'package:newfocus_v2/src/features/sections/notes/widgets/textfield_note.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/widgets/textfield_widget.dart';
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
 import 'package:newfocus_v2/src/widgets/custom_app_bar.dart';
 

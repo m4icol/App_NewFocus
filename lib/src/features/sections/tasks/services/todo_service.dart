@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/models/todo_modal.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/models/todo_modal.dart';
 
 class TodoService {
   final todoCollection = FirebaseFirestore.instance.collection('newfocusApp');

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/provider/service_provider.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/provider/service_provider.dart';
 
 class CardTodoListWidget extends ConsumerWidget {
   const CardTodoListWidget({

@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/models/showModal_task.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/provider/service_provider.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/widgets/category_task.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/models/showModal_task.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/provider/service_provider.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/widgets/category_task.dart';
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/widgets/card_todo_widget.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/widgets/card_todo_widget.dart';
 import 'package:newfocus_v2/src/widgets/custom_app_bar.dart';
 
 class TaskPage extends ConsumerWidget {

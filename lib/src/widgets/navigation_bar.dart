@@ -1,8 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:newfocus_v2/src/features/home/screens/dashboard/dashboard.dart';
-import 'package:newfocus_v2/src/features/task-notes/notes/notes_page.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/task_page.dart';
+import 'package:newfocus_v2/src/features/sections/notes/notes_page.dart';
+import 'package:newfocus_v2/src/features/sections/pomodoro/pomodoro.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/task_page.dart';
 
 class NavigationBarWidget extends StatefulWidget {
   const NavigationBarWidget({super.key});
@@ -18,7 +19,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
     const DashBoard(),
     TaskPage(),
     NotesPage(),
-    const DashBoard(),
+    PomodoroScreen(),
   ];
 
   @override
@@ -32,12 +33,12 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
         height: 52,
         items: <Widget>[
           Icon(
-            Icons.grid_view_rounded,
+            Icons.grid_view_outlined,
             size: 20,
             color: Theme.of(context).scaffoldBackgroundColor,
           ),
           Icon(
-            Icons.access_time,
+            Icons.format_list_bulleted_outlined,
             size: 20,
             color: Theme.of(context).scaffoldBackgroundColor,
           ),

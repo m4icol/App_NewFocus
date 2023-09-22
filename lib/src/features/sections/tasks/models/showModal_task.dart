@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/models/todo_modal.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/provider/date_time_provider.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/provider/radio_provider.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/provider/service_provider.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/widgets/date_time_widget.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/widgets/radio_widget.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/widgets/textfield_widget.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/models/todo_modal.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/provider/date_time_provider.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/provider/radio_provider.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/provider/service_provider.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/widgets/date_time_widget.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/widgets/radio_widget.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/widgets/textfield_widget.dart';
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
 
 class CreateTaskShowModal extends ConsumerWidget {

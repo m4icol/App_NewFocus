@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
-import 'package:newfocus_v2/src/features/task-notes/notes/note_editor.dart';
-import 'package:newfocus_v2/src/features/task-notes/notes/notes_card.dart';
-import 'package:newfocus_v2/src/features/task-notes/notes/notes_reader.dart';
+import 'package:newfocus_v2/src/features/sections/notes/note_editor.dart';
+import 'package:newfocus_v2/src/features/sections/notes/notes_card.dart';
+import 'package:newfocus_v2/src/features/sections/notes/notes_reader.dart';
 import 'package:newfocus_v2/src/utils/theme/widget_themes/button_theme.dart';
 import 'package:newfocus_v2/src/widgets/custom_app_bar.dart';
 

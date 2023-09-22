@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newfocus_v2/src/constants/colors.dart';
-import 'package:newfocus_v2/src/features/task-notes/tasks/provider/radio_provider.dart';
+import 'package:newfocus_v2/src/features/sections/tasks/provider/radio_provider.dart';
 
 class RadioWidget extends ConsumerWidget {
   const RadioWidget({
